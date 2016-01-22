@@ -41,7 +41,8 @@ RUN /opt/conda/bin/conda install -y pysam biopython
 
 ADD tcr101.tar.gz /opt/ 
 
-RUN cd /opt/tcr101 && \
+RUN mv /opt/TrapeS /opt/tcr101 && \
+    cd /opt/tcr101 && \
     sed -i -e '1s:#! /usr/bin/python:#!/usr/bin/env python:' trapes.py
 
 ENV PATH /opt/conda/bin:/opt/bowtie2-2.2.6:/opt/RSEM-1.2.26:/opt/tcr101:$PATH
