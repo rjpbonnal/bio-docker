@@ -2,6 +2,7 @@
 #
 # DESCRIPTION: DeNovoHuman Installation of htslib
 # VERSION               1.3
+# CREATE 2016-01-22
 
 FROM      ubuntu:14.04
 MAINTAINER Raoul J.P. Bonnal <ilpuccio.febo@gmail.com>

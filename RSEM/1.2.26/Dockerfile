@@ -1,3 +1,10 @@
+# INGM Bioinformatics
+#
+# DESCRIPTION DeNovoHuman Installation of RSEM
+# VERSION             1.2.26
+# CREATION 2016-01-25
+
+
 FROM ubuntu:14.04
 
 MAINTAINER Raoul Jean Pierre Bonnal <ilpuccio.febo@gmail.com>

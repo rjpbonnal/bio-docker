@@ -1,7 +1,8 @@
 # INGM Bioinformatics
 #
 # DESCRIPTION: DeNovoHuman Installation of StringTie
-# VERSION               0.0.1
+# VERSION               1.0.4
+# CREATE 2015-10-01
 
 FROM      ubuntu:14.04
 MAINTAINER Raoul J.P. Bonnal <ilpuccio.febo@gmail.com>

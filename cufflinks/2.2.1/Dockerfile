@@ -1,7 +1,8 @@
 # INGM Bioinformatics
 #
-# DESCRIPTION: DeNovoHuman Installation of StringTie
-# VERSION               0.0.1
+# DESCRIPTION: DeNovoHuman Installation of Cufflinks
+# VERSION               2.2.1
+# CREATE 2016-01-22
 
 FROM      ubuntu:14.04
 MAINTAINER Raoul J.P. Bonnal <ilpuccio.febo@gmail.com>
