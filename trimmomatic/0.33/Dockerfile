@@ -1,8 +1,8 @@
 # INGM Bioinformatics
 #
-# DESCRIPTION: DeNovoHuman Installation of Trimmomatic
-# VERSION:             0.33
-# CREATION: 2015-01-25
+# DESCRIPTION DeNovoHuman Installation of Trimmomatic
+# VERSION             0.33
+# CREATION 2016-01-25
 
 FROM      ubuntu:14.04
 MAINTAINER Raoul J.P. Bonnal <ilpuccio.febo@gmail.com>
