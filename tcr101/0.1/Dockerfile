@@ -47,10 +47,6 @@ RUN cd /opt/tcr101 && \
 RUN groupadd -g 10513 bioinfousers
 
 RUN chown -R root:root /opt/tcr101
-#    chmod -R 777 /opt/tcr101
- #   chmod -R o+rx /opt/tcr101
-#    chmod o+rx /opt/tcr101/vdj.alignment && \
-#    chmod o+rx /opt/tcr101/trapes.py
 
 ENV PATH /opt/conda/bin:/opt/bowtie2-2.2.6:/opt/RSEM-1.2.26:/opt/tcr101:$PATH
 ENV PYTHONPATH /opt/conda/pkgs
