@@ -41,9 +41,16 @@ RUN /opt/conda/bin/conda install -y pysam biopython
 
 ADD tcr101.tar.gz /opt/ 
 
-RUN mv /opt/TrapeS /opt/tcr101 && \
-    cd /opt/tcr101 && \
+RUN cd /opt/tcr101 && \
     sed -i -e '1s:#! /usr/bin/python:#!/usr/bin/env python:' trapes.py
+
+RUN groupadd -g 10513 bioinfousers
+
+RUN chown -R root:root /opt/tcr101
+#    chmod -R 777 /opt/tcr101
+ #   chmod -R o+rx /opt/tcr101
+#    chmod o+rx /opt/tcr101/vdj.alignment && \
+#    chmod o+rx /opt/tcr101/trapes.py
 
 ENV PATH /opt/conda/bin:/opt/bowtie2-2.2.6:/opt/RSEM-1.2.26:/opt/tcr101:$PATH
 ENV PYTHONPATH /opt/conda/pkgs
