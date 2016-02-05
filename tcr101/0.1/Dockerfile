@@ -37,12 +37,16 @@ RUN wget https://github.com/deweylab/RSEM/archive/v1.2.26.tar.gz && \
     cd .. && \
     mv RSEM-1.2.26 /opt/
 
-RUN /opt/conda/bin/conda install -y pysam biopython
+RUN /opt/conda/bin/conda install -c https://conda.anaconda.org/anaconda biopython
+RUN /opt/conda/bin/conda install -c https://conda.anaconda.org/cgat pysam 
 
 ADD tcr101.tar.gz /opt/ 
 
 RUN cd /opt/tcr101 && \
-    sed -i -e '1s:#! /usr/bin/python:#!/usr/bin/env python:' trapes.py
+    sed -i -e '1s:#! /usr/bin/python:#!/usr/bin/env python:' trapes.py 
+#    cd /opt/tcr101/Data/mm10 && \
+#    sed -i -e 's/NC_000080.6/14/' mm10.TCR.bed && \
+#    sed -i -e 's/NC_000072.6/6/'  mm10.TCR.bed 
 
 RUN groupadd -g 10513 bioinfousers
 
