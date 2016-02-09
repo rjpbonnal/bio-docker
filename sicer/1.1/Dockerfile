@@ -1,6 +1,6 @@
 # INGM Bioinformatics
 #
-# DESCRIPTION: DeNovoHuman Installation of sicer
+# DESCRIPTION: Installation of sicer
 # VERSION               1.1
 # CREATE 2016-01-22
 
@@ -26,5 +26,5 @@ ENV PATH /opt/SICER_V1.1/SICER:$PATH
 #RUN echo 'PATH=/opt/cufflinks-2.2.1.Linux_x86_64/:$PATH' >> /root/.profile
 
 #COPY README.md /README.md
-
+#CMD ["SICER.sh"]
 #ENTRYPOINT ["/sbin/entrypoint.sh"]
