@@ -12,12 +12,12 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     /bin/bash /Anaconda2-2.4.1-Linux-x86_64.sh -b -p /opt/conda && \
     rm /Anaconda2-2.4.1-Linux-x86_64.sh
 
-RUN apt-get install -y curl grep sed dpkg && \
-    TINI_VERSION=`curl https://github.com/krallin/tini/releases/latest | grep -o "/v.*\"" | sed 's:^..\(.*\).$:\1:'` && \
-    curl -L "https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini_${TINI_VERSION}.deb" > tini.deb && \
-    dpkg -i tini.deb && \
-    rm tini.deb && \
-    apt-get clean
+#RUN apt-get install -y curl grep sed dpkg && \
+#    TINI_VERSION=`curl https://github.com/krallin/tini/releases/latest | grep -o "/v.*\"" | sed 's:^..\(.*\).$:\1:'` && \
+#    curl -L "https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini_${TINI_VERSION}.deb" > tini.deb && \
+#    dpkg -i tini.deb && \
+#    rm tini.deb && \
+#    apt-get clean
 
 RUN apt-get install -y unzip
 
@@ -43,10 +43,10 @@ RUN /opt/conda/bin/conda install -c https://conda.anaconda.org/cgat pysam
 ADD tcr101.tar.gz /opt/ 
 
 RUN cd /opt/tcr101 && \
-    sed -i -e '1s:#! /usr/bin/python:#!/usr/bin/env python:' trapes.py 
-#    cd /opt/tcr101/Data/mm10 && \
-#    sed -i -e 's/NC_000080.6/14/' mm10.TCR.bed && \
-#    sed -i -e 's/NC_000072.6/6/'  mm10.TCR.bed 
+    sed -i -e '1s:#! /usr/bin/python:#!/usr/bin/env python:' trapes.py && \
+    cd /opt/tcr101/Data/mm10 && \
+    sed -i -e 's/NC_000080.6/chr14/' mm10.TCR.bed && \
+    sed -i -e 's/NC_000072.6/chr6/'  mm10.TCR.bed 
 
 RUN groupadd -g 10513 bioinfousers
 
@@ -59,5 +59,5 @@ ENV PYTHONPATH /opt/conda/pkgs
 # > At the moment, setting "LANG=C" on a Linux system *fundamentally breaks Python 3*, and that's not OK.
 ENV LANG C.UTF-8
 
-ENTRYPOINT [ "/usr/bin/tini", "--" ]
+#ENTRYPOINT [ "/usr/bin/tini", "--" ]
 CMD [ "/bin/bash" ]
