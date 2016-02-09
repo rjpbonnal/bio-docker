@@ -4,6 +4,6 @@ do
   IFS="/" read name version docker <<< $dockerfile_path
   cd ${name}/${version}
   echo `pwd`
-  ${dockerhost} build -t helios/${name}:${version} .
+  docker build -t helios/${name}:${version} .
   cd ../../
 done
