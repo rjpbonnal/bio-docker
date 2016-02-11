@@ -6,7 +6,8 @@ MAINTAINER Raoul Jean Pierre Bonnal <ilpuccio.febo@gmail.com>
 
 RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \
     libglib2.0-0 libxext6 libsm6 libxrender1 \
-    git mercurial subversion
+    git mercurial subversion unzip \
+    build-essential checkinstall zlib1g-dev libncurses5-dev
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     wget --quiet https://repo.continuum.io/archive/Anaconda2-2.4.1-Linux-x86_64.sh && \
     /bin/bash /Anaconda2-2.4.1-Linux-x86_64.sh -b -p /opt/conda && \
@@ -19,16 +20,12 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
 #    rm tini.deb && \
 #    apt-get clean
 
-RUN apt-get install -y unzip
 
 RUN wget -O bowtie2-2.2.6-linux-x86_64.zip "http://downloads.sourceforge.net/project/bowtie-bio/bowtie2/2.2.6/bowtie2-2.2.6-linux-x86_64.zip?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fbowtie-bio%2Ffiles%2Fbowtie2%2F2.2.6%2F&ts=1453458192&use_mirror=netcologne" && \
    unzip bowtie2-2.2.6-linux-x86_64.zip && \
    mv bowtie2-2.2.6 /opt/
 
 
-RUN apt-get install -y build-essential checkinstall zlib1g-dev
-
-RUN apt-get install -y 	libncurses5-dev
    
 RUN wget https://github.com/deweylab/RSEM/archive/v1.2.26.tar.gz && \
     tar xzvf v1.2.26.tar.gz && \
