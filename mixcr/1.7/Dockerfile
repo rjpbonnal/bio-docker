@@ -31,15 +31,15 @@ RUN cd /opt &&\
 #    cat stub.sh picard.jar > picard && \
 #    chmod 755 picard
 
-RUN apt-get update && apt-get install -y golang
+#RUN apt-get update && apt-get install -y golang
 
-RUN apt-get update && apt-get install -y git
+#RUN apt-get update && apt-get install -y git
 
-RUN mkdir ~/go
+#RUN mkdir ~/go
 
-RUN GOPATH=~/go go get github.com/ericchiang/pup
+#RUN GOPATH=~/go go get github.com/ericchiang/pup
 
-ENV PATH /opt/mixcr-1.7:~/go/bin:$PATH
+ENV PATH /opt/mixcr-1.7:$PATH
 
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
