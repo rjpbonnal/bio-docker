@@ -20,31 +20,21 @@ RUN \
   rm -rf /var/lib/apt/lists/* && \
   rm -rf /var/cache/oracle-jdk8-installer
 
+RUN apt-get update && apt-get install -y golang git libxml2-utils
 
 RUN cd /opt &&\
     wget "https://github.com/milaboratory/mixcr/releases/download/v1.7/mixcr-1.7.zip" && \
     unzip mixcr-1.7.zip
 
-#ADD stub.sh /opt/picard-tools-2.0.1/
+RUN mkdir /opt/go
 
-#RUN cd /opt/picard-tools-2.0.1 && \
-#    cat stub.sh picard.jar > picard && \
-#    chmod 755 picard
+RUN GOPATH=/opt/go go get github.com/ericchiang/pup
 
-#RUN apt-get update && apt-get install -y golang
-
-#RUN apt-get update && apt-get install -y git
-
-#RUN mkdir ~/go
-
-#RUN GOPATH=~/go go get github.com/ericchiang/pup
-
-ENV PATH /opt/mixcr-1.7:$PATH
+ENV PATH /opt/mixcr-1.7:/opt/go/bin:$PATH
 
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
-RUN apt-get update && apt-get install -y libxml2-utils
 
 #COPY entrypoint.sh /sbin/entrypoint.sh
 #RUN chmod 755 /sbin/entrypoint.sh
