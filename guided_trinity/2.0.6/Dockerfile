@@ -87,15 +87,9 @@ RUN cd /opt &&\
 RUN echo 'PATH=/opt/trinityrnaseq-2.0.6:$PATH' >> /root/.bashrc
 RUN echo 'PATH=/opt/trinityrnaseq-2.0.6:$PATH' >> /root/.profile
 
-RUN addgroup --gid 10513 bioinfousers &&\
-    adduser --uid 11247 --gid 10513 bioinfo
+ADD entrypoint.sh /usr/bin/
 
-USER bioinfo
-
-
-ADD guided_trinity /usr/bin/
-
-ENTRYPOINT ["/usr/bin/guided_trinity"]
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 
 # Creates this user when run docker inside the INGM infra.
 
