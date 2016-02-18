@@ -1,8 +1,9 @@
 # INGM Bioinformatics
 #
-# DESCRIPTION: DeNovoHuman
-# VERSION               2.0.6
+# DESCRIPTION: DeNovoHuman Trinity
+# VERSION               2.1.1
 # CREATE 2015-10-01
+# UPDATE 2016-02-16
 
 FROM      ubuntu:14.04
 MAINTAINER Raoul J.P. Bonnal <ilpuccio.febo@gmail.com>
@@ -19,11 +20,12 @@ RUN apt-get clean
 
 RUN curl -sSL https://rvm.io/mpapis.asc | sudo gpg --import -
 
-ADD wget https://github.com/trinityrnaseq/trinityrnaseq/archive/v2.0.6.tar.gz /opt/
+RUN cd /opt &&\ 
+    wget https://github.com/trinityrnaseq/trinityrnaseq/archive/v2.1.1.tar.gz
 #Download Trinity
 RUN cd /opt &&\
-    tar xzvf v2.0.6.tar.gz
-    cd /opt/trinityrnaseq-2.0.6 &&\
+    tar xzvf v2.1.1.tar.gz &&\
+    cd /opt/trinityrnaseq-2.1.1 &&\
     make &&\
     make plugins
 
@@ -44,10 +46,10 @@ RUN cd /opt &&\
     make install 
 
 RUN cd /opt &&\
-    wget https://github.com/BenLangmead/bowtie2/archive/v2.2.5.tar.gz &&\
-    tar xzvf v2.2.5.tar.gz
+    wget https://github.com/BenLangmead/bowtie2/archive/v2.2.7.tar.gz &&\
+    tar xzvf v2.2.7.tar.gz
 
-RUN cd /opt/bowtie2-2.2.5 &&\
+RUN cd /opt/bowtie2-2.2.7 &&\
     make &&\
     cp bowtie2 /usr/bin &&\
     cp bowtie2-align-s /usr/bin &&\
@@ -75,21 +77,20 @@ RUN cd /opt/bowtie-1.1.2 &&\
     cp bowtie-inspect-l /usr/bin &&\
     cp bowtie-inspect-s /usr/bin
 
-RUN apt-get install -y python
+#RUN apt-get install -y python
 
-RUN cd /opt &&\
-    wget http://ccb.jhu.edu/software/stringtie/dl/stringtie-1.0.4.tar.gz &&\
-    tar xzvf stringtie-1.0.4.tar.gz &&\
-    cd stringtie-1.0.4 &&\
-    make release &&\
-    cp stringtie /usr/bin
+#RUN cd /opt &&\
+#    wget http://ccb.jhu.edu/software/stringtie/dl/stringtie-1.0.4.tar.gz &&\
+#    tar xzvf stringtie-1.0.4.tar.gz &&\
+#    cd stringtie-1.0.4 &&\
+#    make release &&\
+#    cp stringtie /usr/bin
 
-RUN echo 'PATH=/opt/trinityrnaseq-2.0.6:$PATH' >> /root/.bashrc
-RUN echo 'PATH=/opt/trinityrnaseq-2.0.6:$PATH' >> /root/.profile
+ENV PATH /opt/trinityrnaseq-2.1.1:$PATH
 
-ADD entrypoint.sh /usr/bin/
+#ADD entrypoint.sh /usr/bin/
 
-ENTRYPOINT ["/usr/bin/entrypoint.sh"]
+#ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 
 # Creates this user when run docker inside the INGM infra.
 
